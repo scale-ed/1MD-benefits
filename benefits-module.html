@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LiverMD – Benefits Module</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── Tokens (sourced from 1MD Design System 2025) ──────────────── */
+    :root {
+      /* Primitives */
+      --royal-blue-50:  #32457A; /* brand colors/primary/royal blue 50  */
+      --slate-gray-50:  #8B97B1; /* brand colors/primary/slate gray 50  */
+      --slate-gray-20:  #E0E6F0; /* brand colors/primary/tints/slate gray 20 */
+      --slate-gray-10:  #EBF3FB; /* brand colors/primary/tints/slate gray 10 */
+      --white-50:       #F9FDFE; /* brand colors/primary/white 50        */
+      --rich-blue-50:   #303B58; /* brand colors/secondary/rich blue 50  */
+      --coral-50:       #FF6D65; /* brand colors/secondary/coral 50      */
+      --cyan-50:        #0A99D6; /* brand colors/secondary/cyan 50       */
+      --green-50:       #2ED397; /* brand colors/secondary/green 50      */
+      --green-60:       #29C98F; /* brand colors/secondary/green 60      */
+      --lite-blue-50:   #DEE8EB; /* brand colors/tertiary/lite blue 50   */
+      --powder-blue-50: #CCE3EA; /* brand colors/tertiary/powder blue 50 */
+
+      /* Semantic */
+      --bg:          var(--white-50);       /* lp global/body/global-primary-background */
+      --bg-secondary: var(--slate-gray-10); /* lp global/body/global-secondary-background */
+      --card-bg:     #FFFFFF;
+      --text-main:   var(--royal-blue-50);  /* lp global/body/global-primary-body-txt   */
+      --text-muted:  var(--slate-gray-50);  /* lp global/body/global-tertiary-body-txt  */
+      --accent:      var(--green-50);       /* lp global/primary buttons */
+      --accent-dark: var(--green-60);
+      --highlight:   var(--cyan-50);        /* lp texts/highlights/lp-highlight-cyan    */
+      --border:      #CCD5EC;               /* lp borders/border-tw-image-center-content */
+      --border-light: var(--slate-gray-20);
+      --icon-pale:   rgba(46, 211, 151, 0.12);
+
+      --card-radius: 16px;
+      --gap:         24px;
+    }
+
+    /* ─── Section wrapper ────────────────────────────────────────────── */
+    .benefits-section {
+      background-color: var(--bg);
+      padding: 80px 24px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .benefits-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    /* ─── Section header ─────────────────────────────────────────────── */
+    .benefits-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .benefits-title-rule {
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--coral-50);
+      border-radius: 2px;
+      margin: 0 auto 20px;
+    }
+
+    .benefits-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 50px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ─── Desktop grid ───────────────────────────────────────────────── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+    }
+
+    /* ─── Card ───────────────────────────────────────────────────────── */
+    .benefit-card {
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 12px rgba(50, 69, 122, 0.06);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 16px 40px rgba(46, 211, 151, 0.15);
+    }
+
+    /* Image area */
+    .card-image {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Card body */
+    .card-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-headline {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--text-main);
+      line-height: 32px;
+    }
+
+    .card-benefit-tag {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--cyan-50);
+      margin-bottom: 4px;
+    }
+
+    .card-body p {
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--rich-blue-50);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* ─── Mobile: horizontal scroll ─────────────────────────────────── */
+    @media (max-width: 767px) {
+      .benefits-section {
+        padding: 60px 0;
+      }
+
+      .benefits-header {
+        padding: 0 24px;
+      }
+
+      .benefits-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+        padding: 0 24px 24px;
+        /* hide scrollbar visually */
+        scrollbar-width: none;
+      }
+
+      .benefits-grid::-webkit-scrollbar { display: none; }
+
+      .benefit-card {
+        flex: 0 0 300px;
+        scroll-snap-align: start;
+      }
+
+      /* Scroll hint fade on right edge */
+      .benefits-grid-wrapper {
+        position: relative;
+      }
+
+      .benefits-grid-wrapper::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 24px;
+        width: 48px;
+        background: linear-gradient(to left, var(--bg), transparent);
+        pointer-events: none;
+      }
+    }
+
+    /* ─── Scroll dots (mobile) ───────────────────────────────────────── */
+    .scroll-dots {
+      display: none;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
+    .scroll-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(50, 69, 122, 0.2);
+      transition: background 0.2s;
+    }
+
+    .scroll-dot.active {
+      background: var(--accent);
+      width: 18px;
+      border-radius: 3px;
+    }
+
+    @media (max-width: 767px) {
+      .scroll-dots { display: flex; }
+    }
+  </style>
+</head>
+<body style="background:#F9FDFE;">
+
+<section class="benefits-section">
+  <div class="benefits-inner">
+
+    <!-- Header -->
+    <div class="benefits-header">
+      <span class="benefits-title-rule"></span>
+      <h2 class="benefits-title">The Benefits of a Supported Liver</h2>
+    </div>
+
+    <!-- Grid -->
+    <div class="benefits-grid-wrapper">
+      <div class="benefits-grid" id="benefitsGrid">
+
+        <!-- Card 1 – Energy -->
+        <div class="benefit-card">
+          <img
+            class="card-image"
+            src="images/Image generator playground 3_ChatGPT Images 2.0 Edit_2026-06-01_19-38-43.png"
+            alt="Woman resting after a run outdoors, representing consistent energy"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3 class="card-headline">Healthy Enzyme Activity</h3>
+            <span class="card-benefit-tag">More consistent energy throughout the day.</span>
+            <p>LiverMD® helps the liver break down and convert nutrients into long-lasting energy. NAC and Alpha Lipoic Acid are clinically studied to support hepatic energy metabolism and healthy enzyme function.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 – Metabolism -->
+        <div class="benefit-card">
+          <img
+            class="card-image"
+            src="images/AdobeStock_343446369.jpeg"
+            alt="Grandfather playing basketball with grandchild, representing active metabolism"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3 class="card-headline">Liver-Driven Metabolism</h3>
+            <span class="card-benefit-tag">Nutrients burned for fuel, not stored as fat.</span>
+            <p>Your liver is the body's primary metabolic hub — when it's sluggish, nutrients get stored instead of burned. LiverMD® supports healthy hepatic function so your body can efficiently convert what you eat into usable energy, encouraging healthier body composition over time.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 – Digestion -->
+        <div class="benefit-card">
+          <img
+            class="card-image"
+            src="images/AdobeStock_180236452.jpeg"
+            alt="Woman doing pushups in gym, representing digestive wellness"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3 class="card-headline">Bile Production & Fat Metabolism</h3>
+            <span class="card-benefit-tag">Less bloating after meals you love.</span>
+            <p>When your liver is properly supported, digestion runs smoother and discomfort after eating becomes less frequent. Siliphos® Milk Thistle is formulated for superior bioavailability to support healthy bile production and liver cell integrity.</p>
+          </div>
+        </div>
+
+        <!-- Card 4 – Detox -->
+        <div class="benefit-card">
+          <img
+            class="card-image"
+            src="images/AdobeStock_226268063.jpeg"
+            alt="Man enjoying a round of golf, representing everyday vitality"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3 class="card-headline">Cellular Detox Support</h3>
+            <span class="card-benefit-tag">Clearer skin, less afternoon fatigue.</span>
+            <p>LiverMD® nourishes the liver with must-have nutrients that defend against everyday toxins. NAC supports glutathione synthesis — the body's master antioxidant, clinically recognized for its role in liver detoxification and cellular protection.</p>
+          </div>
+        </div>
+
+        <!-- Card 5 – Brain -->
+        <div class="benefit-card">
+          <img
+            class="card-image"
+            src="images/AdobeStock_346719488.jpeg"
+            alt="Woman playing tennis with focus and energy, representing mental clarity"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3 class="card-headline">The Liver-Brain Connection</h3>
+            <span class="card-benefit-tag">Mental clarity, sharper focus, steadier mood.</span>
+            <p>When the liver is overwhelmed, metabolic byproducts accumulate — dulling focus and flattening your mood. LiverMD® supports your liver's natural filtration role, while NAC helps replenish glutathione, the antioxidant your brain depends on for sustained clarity and neurochemical balance.</p>
+          </div>
+        </div>
+
+        <!-- Card 6 – Antioxidant -->
+        <div class="benefit-card">
+          <img
+            class="card-image"
+            src="images/AdobeStock_365324029.jpeg"
+            alt="Man stretching in gym, representing antioxidant defense and clean living"
+            loading="lazy"
+          />
+          <div class="card-body">
+            <h3 class="card-headline">Antioxidant Defense</h3>
+            <span class="card-benefit-tag">Feeling like you're running clean.</span>
+            <p>A well-supported liver helps replenish your neurochemical balance for a clearer head and a more radiant mood. TocoGaia™ Palm Fruit Extract delivers d-Mixed Tocotrienols, a clinically studied form of Vitamin E shown to provide broad-spectrum antioxidant protection for liver and metabolic health.</p>
+          </div>
+        </div>
+
+      </div><!-- /.benefits-grid -->
+
+      <!-- Scroll dots (mobile) -->
+      <div class="scroll-dots" id="scrollDots">
+        <div class="scroll-dot active"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+        <div class="scroll-dot"></div>
+      </div>
+    </div><!-- /.benefits-grid-wrapper -->
+
+  </div><!-- /.benefits-inner -->
+</section>
+
+<script>
+  // Mobile scroll dots
+  const grid  = document.getElementById('benefitsGrid');
+  const dots  = document.querySelectorAll('.scroll-dot');
+
+  if (grid && dots.length) {
+    grid.addEventListener('scroll', () => {
+      const cards     = grid.querySelectorAll('.benefit-card');
+      const scrollLeft = grid.scrollLeft;
+      const cardWidth  = cards[0] ? cards[0].offsetWidth + 16 : 1;
+      const active     = Math.round(scrollLeft / cardWidth);
+      dots.forEach((d, i) => d.classList.toggle('active', i === active));
+    }, { passive: true });
+  }
+</script>
+
+</body>
+</html>
